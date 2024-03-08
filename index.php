@@ -205,17 +205,18 @@ $runsql = mysqli_query($is_connect, $query);
                     <div class="row align-items-center">
                       <div class="col-4">
                         <?php
-                        $query = "select value from setting where nama_setting='perbatasan'";
-                        $query1 = "select count(id) as jumlah_izin from izin where siswa_id==2 and is_approved==2";
-                        $sql = mysqli_query($is_connect, $query);
+                        $query0 = "select value from setting where id=1";
+                        $query1 = "select count(id) as jumlah_izin from izin where is_approved=2 and siswa_id=2";
+                        $sql0 = mysqli_query($is_connect, $query0);
                         $sql1 = mysqli_query($is_connect, $query1);
-                        $fetchdata1 = mysqli_fetch_all($sql, MYSQLI_ASSOC);
-                        $fetchdata2 = mysqli_fetch_all($sql1, MYSQLI_ASSOC);
-                        var_dump($fetchdata1);
+                        
+                        $fetchdata0 = mysqli_fetch_all($sql0, MYSQLI_ASSOC);
+                        $fetchdata1 = mysqli_fetch_all($sql1, MYSQLI_ASSOC);
+                        #var_dump($fetchdata0)
 
 
                         ?>
-                        <h4 class="fw-semibold mb-3 text-center">12</h4>
+                        <h4 class="fw-semibold mb-3 text-center"><?php echo $fetchdata0[0]["value"] - $fetchdata1[0]["jumlah_izin"]?></h4>
                       </div>
                       <div class="col-8">
                         <div class="d-flex justify-content-start">
