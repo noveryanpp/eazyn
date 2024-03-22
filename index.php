@@ -1,8 +1,15 @@
 <?php 
+session_start();
+
+if(!isset($_SESSION['id'])){
+  header('Location: login')
+}
+
 require_once("config/connect.php");
+
 $query = "select izin.*, guru.nama as nama_guru, bk.nama as nama_bk from izin inner join guru on guru.id=izin.guru_id 
           inner join bk on bk.id=izin.bk_id
-          where siswa_id=2";
+          where siswa_id=".$_SESSION['id'];
 
 $runsql = mysqli_query($is_connect, $query);
 #var_dump($runsql);
